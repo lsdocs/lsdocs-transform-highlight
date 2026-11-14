@@ -45,7 +45,9 @@ static SYNTAXES: LazyLock<SyntaxSet> = LazyLock::new(two_face::syntax::extra_new
 
 /// The plugin, as registered with the host.
 pub fn plugin() -> Plugin {
-    Plugin::new("transform-highlight", env!("CARGO_PKG_VERSION")).transformer(Highlight)
+    Plugin::new("transform-highlight", env!("CARGO_PKG_VERSION"))
+        .transformer(Highlight)
+        .cacheable()
 }
 
 /// The highlighting transformer.
