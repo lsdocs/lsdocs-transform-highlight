@@ -7,8 +7,8 @@
 //!
 //! ```json
 //! {"type": "custom", "kind": "highlight",
-//!  "attrs": {"language": "rust", "html": "<pre class=\"highlight\">…</pre>\n"},
-//!  "children": [{"type": "code_block", "language": "rust", "value": "…"}]}
+//!  "attrs": {"language": "rust", "html": "<pre class=\"highlight\">...</pre>\n"},
+//!  "children": [{"type": "code_block", "language": "rust", "value": "..."}]}
 //! ```
 //!
 //! `attrs.html` is the highlighted block for HTML renderers. Tokens are
