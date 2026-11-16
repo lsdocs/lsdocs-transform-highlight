@@ -70,6 +70,7 @@ impl Transformer for Highlight {
         Ok(TransformApplyResult {
             document,
             diagnostics: vec![],
+            dependencies: vec![],
         })
     }
 }
