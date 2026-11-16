@@ -183,6 +183,7 @@ fn escape_attr(s: &str) -> String {
 
 #[cfg(test)]
 mod tests {
+    #![allow(clippy::unwrap_used, clippy::panic)]
     use super::*;
     use lsdocs_plugin_sdk::doctree::{BlockQuote, Document};
     use lsdocs_plugin_sdk::protocol::InitializeParams;
