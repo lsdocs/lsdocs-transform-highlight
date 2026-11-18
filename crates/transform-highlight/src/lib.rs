@@ -29,7 +29,7 @@ use std::collections::BTreeMap;
 use std::sync::LazyLock;
 
 use lsdocs_plugin_sdk::doctree::{CodeBlock, Custom, Node};
-use lsdocs_plugin_sdk::protocol::{TransformApplyParams, TransformApplyResult};
+use lsdocs_plugin_sdk::protocol::{RenderTransformEachParams, RenderTransformEachResult};
 use lsdocs_plugin_sdk::{Context, Plugin, PluginResult, Transformer};
 use serde_json::{Value, json};
 use syntect::html::{ClassStyle, ClassedHTMLGenerator};
@@ -61,13 +61,13 @@ impl Transformer for Highlight {
 
     async fn apply(
         &self,
-        params: TransformApplyParams,
+        params: RenderTransformEachParams,
         ctx: &Context,
-    ) -> PluginResult<TransformApplyResult> {
+    ) -> PluginResult<RenderTransformEachResult> {
         let options = Options::from_value(ctx.options());
         let mut document = params.document;
         highlight_all(&mut document.children, &options);
-        Ok(TransformApplyResult {
+        Ok(RenderTransformEachResult {
             document,
             diagnostics: vec![],
             dependencies: vec![],
