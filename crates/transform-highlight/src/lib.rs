@@ -46,7 +46,15 @@ static SYNTAXES: LazyLock<SyntaxSet> = LazyLock::new(two_face::syntax::extra_new
 /// The plugin, as registered with the host.
 pub fn plugin() -> Plugin {
     Plugin::new("transform-highlight", env!("CARGO_PKG_VERSION"))
-        .settings(|c| lsdocs_plugin_sdk::config::settings_toml_keys(c, &["languages", "aliases"]))
+        .settings(|c| {
+            lsdocs_plugin_sdk::config::settings_toml_keys(
+                c,
+                &[
+                    ("languages", lsdocs_plugin_sdk::config::Kind::Array),
+                    ("aliases", lsdocs_plugin_sdk::config::Kind::Table),
+                ],
+            )
+        })
         .transformer(Highlight)
         .cacheable()
 }
