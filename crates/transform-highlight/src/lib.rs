@@ -21,7 +21,7 @@
 //! Code blocks without a language, or in a language it does not know, are
 //! left alone.
 //!
-//! Options: `languages`, a list of language names or extensions to
+//! Settings: `languages`, a list of language names or extensions to
 //! highlight (default: all), and `aliases`, a table mapping extra names to
 //! known ones, e.g. `{ jsonc = "json" }`.
 
