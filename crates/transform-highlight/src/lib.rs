@@ -46,6 +46,7 @@ static SYNTAXES: LazyLock<SyntaxSet> = LazyLock::new(two_face::syntax::extra_new
 /// The plugin, as registered with the host.
 pub fn plugin() -> Plugin {
     Plugin::new("transform-highlight", env!("CARGO_PKG_VERSION"))
+        .settings(|c| lsdocs_plugin_sdk::config::settings_toml_keys(c, &["languages", "aliases"]))
         .transformer(Highlight)
         .cacheable()
 }
@@ -64,7 +65,7 @@ impl Transformer for Highlight {
         params: RenderTransformEachParams,
         ctx: &Context,
     ) -> PluginResult<RenderTransformEachResult> {
-        let options = Options::from_value(ctx.options());
+        let options = Options::from_value(ctx.settings());
         let mut document = params.document;
         highlight_all(&mut document.children, &options);
         Ok(RenderTransformEachResult {
@@ -201,10 +202,12 @@ mod tests {
     async fn run(options: Value, children: Vec<Node>) -> Vec<Node> {
         let mut doc = Document::new("a.md");
         doc.children = children;
-        let init = InitializeParams {
+        let init = lsdocs_plugin_sdk::Setup::with_settings(
+            InitializeParams {
+                ..InitializeParams::default()
+            },
             options,
-            ..InitializeParams::default()
-        };
+        );
         let mut out = testing::run_transform(&plugin(), &init, vec![doc])
             .await
             .unwrap();
