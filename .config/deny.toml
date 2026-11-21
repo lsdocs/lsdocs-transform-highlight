@@ -5,7 +5,13 @@ all-features = true
 
 [advisories]
 # Advisories from the RustSec database fail the check unless listed here.
-ignore = []
+ignore = [
+    # bincode 1.3.3 is unmaintained (not a vulnerability). syntect uses it only
+    # to load the syntax sets built into this plugin, never untrusted input.
+    # Lift when syntect (and two-face) stop depending on bincode 1, or when
+    # this plugin moves off syntect.
+    { id = "RUSTSEC-2025-0141", reason = "bincode via syntect: trusted embedded dumps only" },
+]
 
 [licenses]
 # Licenses third-party dependencies may use.
