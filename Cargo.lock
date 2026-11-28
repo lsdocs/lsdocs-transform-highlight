@@ -562,9 +562,9 @@ dependencies = [
 
 [[package]]
 name = "two-face"
-version = "0.5.2+bat-0.26.1"
+version = "0.5.3+bat-0.27.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "915be7adc2ff6f4338acbf71f3eda0a146f46003b992a1669c674308610efdac"
+checksum = "8476eba391d01c32d3ef40325aa305a890d797aa57d906d14ac632479ceb22b5"
 dependencies = [
  "serde",
  "serde_derive",
